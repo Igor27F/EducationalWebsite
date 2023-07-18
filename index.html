@@ -1,0 +1,167 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+  <head>
+    <meta charset="UTF-8" />
+    <title>Site de jogos educativos infantis</title>
+    <style>
+      body {
+        background-color: rgb(238, 135, 56);
+        margin: 0;
+        width: 100vw;
+        height: 100vh;
+        display: flex;
+        flex-direction: column;
+      }
+      header {
+        /* background-color: #ee5671; */
+        width: 100%;
+        height: 10%;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+      }
+      #titulo {
+        margin: 0;
+        text-align: center;
+        color: #620a1a;
+        font-size: 32px;
+        /* @media screen and (min-width: 300px){
+            font-size: 32px;
+        } */
+      }
+      #main{
+        width: 100%;
+        height: 90%;
+        display: flex;
+      }
+      #content{
+        margin: auto;
+        width: 95%;
+        height: 90%;
+        background-color: rgb(238,211,86);
+        display: flex;
+        flex-direction: column;
+        border-radius: 30px;
+      }
+      .selecaoInicial{
+        display: flex;
+        flex-direction: column;
+        margin: auto;
+        width: 90%;
+        height: 30%;
+        /* margin-top: 3%; */
+        align-items: center;
+        justify-content: center;
+        font-size: 80%;
+        @media screen and (min-width: 601px){
+            font-size: 24px;
+        }
+        background-color: #e261e4;
+        border-radius: 30px;
+      }
+      h3{
+        font-size: 24px;
+      }
+      .options{
+        width: 90%;
+        display: flex;
+        justify-content: space-evenly;
+        border-radius: 30px;
+        margin-bottom: 20px;
+      }
+      .option{
+        padding: 2%;
+        background-color: aquamarine;
+        border: 2px double blue;
+        border-radius: 25px;
+        cursor: pointer;
+      }
+      .selected{
+        background-color: rgb(4, 128, 87);
+        font-weight: bold;
+      }
+      .confirma{
+        width: 20%;
+        height: 8%;
+        margin: auto;
+        margin-top: -10px;
+        background-color: black;
+        color: white;
+        border: 2px double red;
+        border-radius: 15px;
+        cursor: pointer;
+      }
+    </style>
+  </head>
+  <body>
+    <header>
+      <h1 id="titulo">BEM VINDO AO BRINCANDO E APRENDENDO</div>
+    </header>
+    <div id="main">
+        <div id="content">
+            <section class="selecaoInicial">
+                <h3>Selecione a idade</h3>
+                <div class="options">
+                    <button id="age1" class="option age" onclick="selectAge('1-4')">De 1 a 4 anos</button>
+                    <button id="age2" class="option age" onclick="selectAge('5-10')">De 5 a 10 anos</button>
+                    <button id="age3" class="option age" onclick="selectAge('10+')">Acima de 10 anos</button>
+                </div>
+            </section>
+            <section class="selecaoInicial">
+                <h3>Selecione o tema</h3>
+                <div class="options">
+                  <button id="theme1" class="option theme" onclick="selectTheme('tema1')">tema1</button>
+                  <button id="theme2" class="option theme" onclick="selectTheme('tema2')">tema2</button>
+                </div>
+            </section>
+            <button class="confirma" onclick="confirmarConfig()">Confirmar</button>
+        </div>
+    </div>
+    <script>
+      function selectAge(age){
+        const age1 = document.getElementById("age1");
+        const age2 = document.getElementById("age2");
+        const age3 = document.getElementById("age3");
+        switch(age){
+          case '1-4':
+            age1.classList.toggle('selected');
+            age2.classList.remove('selected');
+            age3.classList.remove('selected');
+            break;
+
+          case '5-10':
+            age1.classList.remove('selected');
+            age2.classList.toggle('selected');
+            age3.classList.remove('selected');
+            break;
+
+          case '10+':
+            age1.classList.remove('selected');
+            age2.classList.remove('selected');
+            age3.classList.toggle('selected');
+            break;
+        }
+      }
+      
+      function selectTheme(theme){
+        const theme1 = document.getElementById("theme1");
+        const theme2 = document.getElementById("theme2");
+        switch(theme){
+          case 'tema1':
+            theme1.classList.toggle('selected');
+            theme2.classList.remove('selected');
+            break;
+
+          case 'tema2':
+            theme1.classList.remove('selected');
+            theme2.classList.toggle('selected');
+            break;
+        }
+      }
+
+      function confirmarConfig(){
+        document.getElementsByClassName('selected');
+      }
+    </script>
+  </body>
+</html>
