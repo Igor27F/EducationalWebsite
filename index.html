@@ -53,9 +53,9 @@
         align-items: center;
         justify-content: center;
         font-size: 80%;
-        @media screen and (min-width: 601px){
+        /* @media screen and (min-width: 601px){
             font-size: 24px;
-        }
+        } */
         background-color: #e261e4;
         border-radius: 30px;
       }
@@ -99,22 +99,22 @@
     </header>
     <div id="main">
         <div id="content">
-            <section class="selecaoInicial">
-                <h3>Selecione a idade</h3>
+            <section class="selecaoInicial age">
+                <h3 class="ageLabel">Selecione a idade</h3>
                 <div class="options">
                     <button id="age1" class="option age" onclick="selectAge('1-4')">De 1 a 4 anos</button>
                     <button id="age2" class="option age" onclick="selectAge('5-10')">De 5 a 10 anos</button>
                     <button id="age3" class="option age" onclick="selectAge('10+')">Acima de 10 anos</button>
                 </div>
             </section>
-            <section class="selecaoInicial">
-                <h3>Selecione o tema</h3>
+            <section class="selecaoInicial theme">
+                <h3 class="themeLabel">Selecione o tema</h3>
                 <div class="options">
-                  <button id="theme1" class="option theme" onclick="selectTheme('tema1')">tema1</button>
+                  <button id="theme1" class="option theme selected" onclick="selectTheme('tema1')">tema1</button>
                   <button id="theme2" class="option theme" onclick="selectTheme('tema2')">tema2</button>
                 </div>
             </section>
-            <button class="confirma" onclick="confirmarConfig()">Confirmar</button>
+            <button class="confirma" onclick="confirmarSelecao()">Confirmar</button>
         </div>
     </div>
     <script>
@@ -122,6 +122,8 @@
         const age1 = document.getElementById("age1");
         const age2 = document.getElementById("age2");
         const age3 = document.getElementById("age3");
+        document.querySelector("h3.ageLabel").style.textDecoration = "none";
+        document.querySelector(".selecaoInicial.age").style.border = "none";
         switch(age){
           case '1-4':
             age1.classList.toggle('selected');
@@ -148,20 +150,39 @@
         const theme2 = document.getElementById("theme2");
         switch(theme){
           case 'tema1':
-            theme1.classList.toggle('selected');
+            theme1.classList.add('selected');
             theme2.classList.remove('selected');
             break;
 
           case 'tema2':
             theme1.classList.remove('selected');
-            theme2.classList.toggle('selected');
+            theme2.classList.add('selected');
             break;
         }
       }
 
-      function confirmarConfig(){
-        document.getElementsByClassName('selected');
+      function confirmarSelecao(){
+        if(document.querySelector(".age.selected")){
+          var age = document.querySelector(".age.selected").id;
+          var theme = document.querySelector(".theme.selected").id;
+          alterarConfig(age, theme);
+          // window.location.replace("menu.html");
+          window.location.href = "menu.html?" + "age=" + age + "&" + "theme=" + theme;
+        }
+        else{
+          // document.querySelector("h3.ageLabel").style.color = "red";
+          document.querySelector("h3.ageLabel").style.textDecoration = "underline solid red";
+          document.querySelector(".selecaoInicial.age").style.border = "10px solid red";
+        }
       }
+
+      function alterarConfig(age, theme){
+        if(age){
+          localStorage.setItem("age", age);
+        }
+        localStorage.setItem("theme", theme);
+      }
+
     </script>
   </body>
 </html>
