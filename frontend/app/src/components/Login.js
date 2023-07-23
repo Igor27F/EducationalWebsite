@@ -17,6 +17,7 @@ function Login() {
           headers: { "Content-Type": "application/json" },
         }
       );
+      console.log(response);
     } catch (e) {
       if (!e?.response) {
         setError("Erro ao acessar o servidor");
