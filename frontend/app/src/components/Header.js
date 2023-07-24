@@ -5,16 +5,78 @@ import Typography from "@mui/material/Typography";
 import IconButton from "@mui/material/IconButton";
 import MenuIcon from "@mui/icons-material/Menu";
 import AccountCircle from "@mui/icons-material/AccountCircle";
+import AdbIcon from "@mui/icons-material/Adb";
 import MenuItem from "@mui/material/MenuItem";
+// import SearchIcon from "@mui/icons-material/Search";
 import Menu from "@mui/material/Menu";
-import Button from "@mui/material/Button";
+import {
+  Autocomplete,
+  Box,
+  Button,
+  // InputBase,
+  TextField,
+  alpha,
+  styled,
+} from "@mui/material";
+import { lighten, darken } from "@mui/system";
+import axios from "axios";
 
-function Header() {
+const GroupHeader = styled("div")(({ theme }) => ({
+  position: "sticky",
+  top: "-8px",
+  padding: "4px 10px",
+  color: theme.palette.primary.main,
+  backgroundColor:
+    theme.palette.mode === "light"
+      ? lighten(theme.palette.primary.light, 0.85)
+      : darken(theme.palette.primary.main, 0.8),
+}));
+
+const GroupItems = styled("ul")({
+  padding: 0,
+});
+
+const Search = styled("div")(({ theme }) => ({
+  position: "relative",
+  borderRadius: theme.shape.borderRadius,
+  backgroundColor: alpha(theme.palette.common.white, 0.15),
+  "&:hover": {
+    backgroundColor: alpha(theme.palette.common.white, 0.25),
+  },
+  marginRight: theme.spacing(2),
+  marginLeft: 0,
+  width: "100%",
+  [theme.breakpoints.up("sm")]: {
+    marginLeft: theme.spacing(3),
+    width: "auto",
+  },
+}));
+
+function Header(props) {
   const [auth, setAuth] = React.useState(false);
   const [anchorEl, setAnchorEl] = React.useState(null);
+  const [games, setGames] = React.useState([]);
 
-  const handleChange = (event) => {
-    setAuth(event.target.checked);
+  // React.useEffect(() => {
+  //   axios.get("http://localhost:3000/getGames").then((response) => {
+  //     setGames(response.data);
+  //   });
+  // }, []);
+
+  const handleGetGames = async (e) => {
+    e.preventDefault();
+    try {
+      const response = await axios.get("http://localhost:3000/getGames");
+      setGames(response.data);
+    } catch (e) {
+      if (!e?.response) {
+        console.log("Erro ao acessar o servidor");
+      }
+    }
+  };
+  const handleLogin = (e) => {
+    e.preventDefault();
+    setAuth(true);
   };
 
   const handleMenu = (event) => {
@@ -25,8 +87,13 @@ function Header() {
     setAnchorEl(null);
   };
 
+  const handleLogout = () => {
+    handleClose();
+    setAuth(false);
+  };
+
   return (
-    <AppBar position="static">
+    <AppBar position="static" className="pt-1">
       <Toolbar>
         <IconButton
           size="large"
@@ -37,9 +104,36 @@ function Header() {
         >
           <MenuIcon />
         </IconButton>
-        <Typography variant="h6" component="div" sx={{ flexGrow: 1 }}>
-          {auth ? "nome do usuario" : "teste"}
+        <AdbIcon sx={{ display: { xs: "none", md: "flex" }, mr: 1 }} />
+        <Typography variant="h5" sx={{ flexGrow: 1 }}>
+          logotipo
         </Typography>
+        <Search>
+          <Autocomplete
+            className=""
+            id="combo-box-demo"
+            options={games.sort(
+              (a, b) => -b.category.localeCompare(a.category)
+            )}
+            groupBy={(option) => option.category}
+            getOptionLabel={(option) => option.title}
+            sx={{ width: 600 }}
+            onChange={(event, jogoSelecionado) =>
+              props.handleGameSelected(jogoSelecionado.title)
+            }
+            renderInput={(params) => (
+              <TextField {...params} label="With categories" />
+            )}
+            renderGroup={(params) => (
+              <li key={params.key}>
+                <GroupHeader>{params.group}</GroupHeader>
+                <GroupItems>{params.children}</GroupItems>
+              </li>
+            )}
+            onOpen={handleGetGames}
+          />
+        </Search>
+        <Box sx={{ flexGrow: 1 }} />
         {!auth ? (
           <>
             <Button
@@ -47,6 +141,7 @@ function Header() {
               className="bg-red-600"
               color="inherit"
               sx={{ mr: 1 }}
+              onClick={handleLogin}
             >
               Login
             </Button>
@@ -55,7 +150,10 @@ function Header() {
             </Button>
           </>
         ) : (
-          <>
+          <Box className="flex items-center">
+            <Typography variant="h6" component="div" sx={{ flexGrow: 1 }}>
+              joaozinho
+            </Typography>
             <IconButton
               size="large"
               aria-label="account of current user"
@@ -82,9 +180,9 @@ function Header() {
               onClose={handleClose}
             >
               <MenuItem onClick={handleClose}>Profile</MenuItem>
-              <MenuItem onClick={handleClose}>My account</MenuItem>
+              <MenuItem onClick={handleLogout}>logout</MenuItem>
             </Menu>
-          </>
+          </Box>
         )}
       </Toolbar>
     </AppBar>
