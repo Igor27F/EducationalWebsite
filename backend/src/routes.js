@@ -19,16 +19,40 @@ const users = [
 ];
 
 const games = [
-  { title: "cores", category: "De 0 a 4 anos" },
-  { title: "numeros", category: "De 0 a 4 anos" },
-  { title: "letras", category: "De 0 a 4 anos" },
-  { title: "jogo da memória", category: "De 5 a 10 anos" },
-  { title: "cobrinha", category: "De 5 a 10 anos" },
-  { title: "soletrando", category: "De 5 a 10 anos" },
-  { title: "perguntas e respostas", category: "Mais que 10 anos" },
-  { title: "curiosidades", category: "Mais que 10 anos" },
-  { title: "ingles", category: "Mais que 10 anos" },
-  { title: "jogos de logica", category: "Mais que 10 anos" },
+  { title: "cores", category: "baby", categoryDescription: "De 0 a 4 anos" },
+  { title: "numeros", category: "baby", categoryDescription: "De 0 a 4 anos" },
+  { title: "letras", category: "baby", categoryDescription: "De 0 a 4 anos" },
+  {
+    title: "jogo da memória",
+    category: "kid",
+    categoryDescription: "De 5 a 10 anos",
+  },
+  { title: "cobrinha", category: "kid", categoryDescription: "De 5 a 10 anos" },
+  {
+    title: "soletrando",
+    category: "kid",
+    categoryDescription: "De 5 a 10 anos",
+  },
+  {
+    title: "perguntas e respostas",
+    category: "teen",
+    categoryDescription: "Mais que 10 anos",
+  },
+  {
+    title: "curiosidades",
+    category: "teen",
+    categoryDescription: "Mais que 10 anos",
+  },
+  {
+    title: "ingles",
+    category: "teen",
+    categoryDescription: "Mais que 10 anos",
+  },
+  {
+    title: "jogos de logica",
+    category: "teen",
+    categoryDescription: "Mais que 10 anos",
+  },
 ];
 
 routes.post("/login", (req, res) => {
@@ -55,6 +79,14 @@ routes.get("/getGames", (req, res) => {
       .status(401)
       .json({ message: "ops, parece que ocorreu um problema..." });
   }
+});
+
+routes.post("/listGames", (req, res) => {
+  const { category } = req.body;
+
+  return res
+    .status(200)
+    .json(games.filter((game) => game.category == category));
 });
 
 module.exports = routes;

@@ -1,6 +1,14 @@
 import { ThemeProvider, createTheme } from "@mui/material";
-import { BrowserRouter as Router, Routes, Route, Link } from "react-router-dom";
+import {
+  BrowserRouter as Router,
+  Routes,
+  Route,
+  Link,
+  useNavigate,
+} from "react-router-dom";
 import Header from "./components/Header";
+import GamesListMenu from "./components/GamesListMenu";
+import React from "react";
 
 const darkTheme = createTheme({
   palette: {
@@ -12,17 +20,19 @@ const darkTheme = createTheme({
 });
 
 function App() {
+  // const [selectedGame, setSelectedGame] = React.useState("");
+
   return (
     <div className="App">
-      <ThemeProvider theme={darkTheme}>
-        <Router>
-          <Header handleGameSelected={(jogo) => console.log(jogo)} />
-          <Routes>
-            <Route exact path="/" element={<div></div>}></Route>
-            <Route path="jogo" element={<div></div>}></Route>
-          </Routes>
-        </Router>
-      </ThemeProvider>
+      {/* <ThemeProvider theme={darkTheme}> */}
+      {/* <Router> */}
+      <Header />
+      <Routes>
+        <Route exact path="/" element={<GamesListMenu />}></Route>
+        <Route path="/jogo" element={<div>teste</div>}></Route>
+      </Routes>
+      {/* </Router> */}
+      {/* </ThemeProvider> */}
     </div>
   );
 }
