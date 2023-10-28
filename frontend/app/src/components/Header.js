@@ -6,6 +6,7 @@ import IconButton from "@mui/material/IconButton";
 import MenuIcon from "@mui/icons-material/Menu";
 import AccountCircle from "@mui/icons-material/AccountCircle";
 import AdbIcon from "@mui/icons-material/Adb";
+import logo from "../rakanlogo.png";
 import MenuItem from "@mui/material/MenuItem";
 // import SearchIcon from "@mui/icons-material/Search";
 import Menu from "@mui/material/Menu";
@@ -114,13 +115,14 @@ function Header(props) {
               <MenuIcon />
             </IconButton>
             <Link className="flex items-center" to="/">
-              <AdbIcon sx={{ display: { xs: "none", md: "flex" }, mr: 1 }} />
+              {/* <AdbIcon sx={{ display: { xs: "none", md: "flex" }, mr: 1 }} /> */}
+              <img src={logo} width="35px" alt="icon"></img>
               <Typography
                 variant="h5"
                 className="select-none"
-                sx={{ flexGrow: 1 }}
+                sx={{ flexGrow: 1, ml: 1 }}
               >
-                logo
+                Início
               </Typography>
             </Link>
           </Grid>
