@@ -9,6 +9,7 @@ import {
 import Header from "./components/Header";
 import GamesListMenu from "./components/GamesListMenu";
 import React from "react";
+import MemoryGame from "./components/MemoryGame/MemoryGame";
 
 const darkTheme = createTheme({
   palette: {
@@ -30,6 +31,7 @@ function App() {
       <Routes>
         <Route exact path="/" element={<GamesListMenu />}></Route>
         <Route path="/jogo" element={<div>teste</div>}></Route>
+        <Route path="/jogodamemória" element={<MemoryGame />}></Route>
       </Routes>
       {/* </Router> */}
       {/* </ThemeProvider> */}

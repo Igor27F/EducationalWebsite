@@ -62,7 +62,7 @@ function Header(props) {
   const navigate = useNavigate();
 
   const handleChangeGame = (game) => {
-    return navigate("/game/" + game);
+    return navigate(game.replace(/\s/g, ""));
   };
 
   // React.useEffect(() => {
@@ -212,7 +212,7 @@ function Header(props) {
                   onClose={handleClose}
                 >
                   {/* <MenuItem onClick={handleClose}>Profile</MenuItem> */}
-                  <MenuItem onClick={handleLogout}>logout</MenuItem>
+                  <MenuItem onClick={handleLogout}>Sair</MenuItem>
                 </Menu>
               </Box>
             )}

@@ -36,22 +36,22 @@ const games = [
   {
     title: "perguntas e respostas",
     category: "teen",
-    categoryDescription: "Mais que 10 anos",
+    categoryDescription: "Maior que 10 anos",
   },
   {
     title: "curiosidades",
     category: "teen",
-    categoryDescription: "Mais que 10 anos",
+    categoryDescription: "Maior que 10 anos",
   },
   {
     title: "ingles",
     category: "teen",
-    categoryDescription: "Mais que 10 anos",
+    categoryDescription: "Maior que 10 anos",
   },
   {
     title: "jogos de logica",
     category: "teen",
-    categoryDescription: "Mais que 10 anos",
+    categoryDescription: "Maior que 10 anos",
   },
 ];
 

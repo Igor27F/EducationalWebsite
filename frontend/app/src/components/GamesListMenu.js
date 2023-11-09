@@ -58,7 +58,7 @@ function GamesListMenu(props) {
             variant={category === "teen" ? "contained" : "outlined"}
             onClick={(e) => handleChangeCategory(e)}
           >
-            Adultos
+            Adolescentes
           </Button>
         </ButtonGroup>
       </Box>
@@ -87,11 +87,13 @@ function GamesListMenu(props) {
                 key={index}
               >
                 <Link
-                  to={"jogo/" + game.title}
+                  to={game.title.replace(/\s/g, "")}
                   className="w-full flex justify-center items-center"
                 >
-                  <Box className="border-4 border-sky-500 w-3/4 h-36 bg-orange-500">
-                    <Typography>{game.title}</Typography>
+                  <Box className="border-4 border-sky-500 w-3/4 h-36 bg-green-500 text-red-600 text-center justify-center items-center flex">
+                    <Typography variant="h3" className="font-bold">
+                      {game.title}
+                    </Typography>
                   </Box>
                 </Link>
               </Grid>

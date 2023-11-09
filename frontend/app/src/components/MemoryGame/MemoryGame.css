@@ -1,0 +1,63 @@
+* {
+  user-select: none;
+}
+.gameScreen {
+  margin-top: 5px;
+  height: 80vh;
+}
+.card-grid {
+  /* margin-top: 40px; */
+  width: 100%;
+  display: grid;
+  /* grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); */
+  grid-template-columns: 1fr 1fr 1fr 1fr;
+  grid-template-rows: 30% 30% 30%;
+  grid-gap: 10px;
+  margin: auto;
+}
+#timer {
+  background-color: green;
+  height: 100%;
+  width: 100%;
+}
+#timerContainer {
+  height: 6.5%;
+  width: 100%;
+  background-color: red;
+  margin: auto;
+  margin-top: 10px;
+  border-radius: 10px;
+  overflow: hidden;
+  text-align: center;
+  color: white;
+  font-size: 2em;
+}
+#timerText {
+  position: absolute;
+  left: 0;
+  right: 0;
+  margin-left: auto;
+  margin-right: auto;
+  width: 500px;
+}
+#gameStarted {
+  height: 100%;
+  width: 50%;
+  margin: auto;
+}
+@keyframes timer-animation-reverse {
+  from {
+    width: 100%;
+  }
+  to {
+    width: 0;
+  }
+}
+@keyframes timer-animation {
+  from {
+    width: 0;
+  }
+  to {
+    width: 100%;
+  }
+}
