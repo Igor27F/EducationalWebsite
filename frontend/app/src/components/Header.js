@@ -5,17 +5,14 @@ import Typography from "@mui/material/Typography";
 import IconButton from "@mui/material/IconButton";
 import MenuIcon from "@mui/icons-material/Menu";
 import AccountCircle from "@mui/icons-material/AccountCircle";
-import AdbIcon from "@mui/icons-material/Adb";
 import logo from "../rakanlogo.png";
 import MenuItem from "@mui/material/MenuItem";
-// import SearchIcon from "@mui/icons-material/Search";
 import Menu from "@mui/material/Menu";
 import {
   Autocomplete,
   Box,
   Button,
   Grid,
-  // InputBase,
   TextField,
   alpha,
   styled,
@@ -65,12 +62,6 @@ function Header(props) {
     return navigate(game.replace(/\s/g, ""));
   };
 
-  // React.useEffect(() => {
-  //   axios.get("http://localhost:3000/getGames").then((response) => {
-  //     setGames(response.data);
-  //   });
-  // }, []);
-
   const handleGetGames = async (e) => {
     e.preventDefault();
     try {
@@ -115,7 +106,6 @@ function Header(props) {
               <MenuIcon />
             </IconButton>
             <Link className="flex items-center" to="/">
-              {/* <AdbIcon sx={{ display: { xs: "none", md: "flex" }, mr: 1 }} /> */}
               <img src={logo} width="35px" alt="icon"></img>
               <Typography
                 variant="h5"
@@ -167,9 +157,7 @@ function Header(props) {
                 >
                   Login
                 </Button>
-                {/* <Button variant="outlined" className="bg-red-600" color="inherit">
-              Cadastro
-            </Button> */}
+                {/*TODO criar menu de cadastro*/}
               </>
             ) : (
               <Box
@@ -211,7 +199,7 @@ function Header(props) {
                   open={Boolean(anchorEl)}
                   onClose={handleClose}
                 >
-                  {/* <MenuItem onClick={handleClose}>Profile</MenuItem> */}
+                  {/*TODO criar menu de perfil*/}
                   <MenuItem onClick={handleLogout}>Sair</MenuItem>
                 </Menu>
               </Box>

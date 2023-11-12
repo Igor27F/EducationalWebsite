@@ -7,7 +7,6 @@ import {
   Skeleton,
   Typography,
 } from "@mui/material";
-// import cenario from "../cenario1.jpg";
 import axios from "axios";
 import React from "react";
 import { Link } from "react-router-dom";
@@ -93,8 +92,7 @@ function GamesListMenu(props) {
                 >
                   <Box
                     sx={{
-                      // backgroundImage: "url('../cenario1.jpeg')",
-                      // backgroundRepeat: "no-repeat",
+                      //TODO adicionar imagem de fundo nos cards
                       height: "385px",
                       width: "385px",
                     }}

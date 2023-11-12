@@ -26,8 +26,6 @@ const MemoryGame = () => {
   const [choiceTwo, setChoiceTwo] = useState(null);
   const [screen, setScreen] = useState("game");
   const [timer, setTimer] = useState(null);
-  // const [selectedCards, setSelectedCards] = useState([]);
-  // const [matchedCards, setMatchedCards] = useState([]);
 
   const startGame = () => {
     var randomCards = [];
@@ -54,22 +52,13 @@ const MemoryGame = () => {
           flipped: false,
         }
       );
-      // randomCards.push(
-      //   pokemonAPI + randomNumber + ".png",
-      //   pokemonAPI + randomNumber + ".png"
-      // );
     }
     shuffle(randomCards);
     setCards(randomCards);
   };
-  // useEffect(() => {
-  //   console.log(gameRunning);
-  // }, [gameRunning]);
 
   const resetGame = () => {
     setScreen("game");
-    // setSelectedCards([]);
-    // setMatchedCards([]);
     startGame();
     var memTime = 5;
     setTimerStyle({ animation: "timer-animation " + memTime + "s linear" });
@@ -78,8 +67,6 @@ const MemoryGame = () => {
       setGameRunning(true);
       startFlip();
     }, memTime * 1000);
-    // document.getElementById("timer").style.animation =
-    //   "timer-animation-reverse " + 10 + "s linear";
   };
 
   const startFlip = () => {
@@ -90,8 +77,6 @@ const MemoryGame = () => {
     if (timer) clearTimeout(timer);
     setTimer(
       setTimeout(() => {
-        // setGameRunning(true);
-        // endFlip();
         console.log("game running: " + gameRunning);
         setFlipTime(false);
       }, flipTimer * 1000)
@@ -117,22 +102,6 @@ const MemoryGame = () => {
         setChoiceOne(card);
       }
     }
-    // choiceOne ? setChoiceTwo(card) : setChoiceOne(card);
-    // changeCardImage("back");
-
-    // if (selectedCards.length === 2) {
-    //   return;
-    // }
-    // setSelectedCards([...selectedCards, card]);
-    // if (selectedCards.length === 1 && selectedCards[0].id !== card.id) {
-    //   setTimeout(() => {
-    //     setSelectedCards([]);
-    //   }, 1000);
-    // }
-    // if (selectedCards.length === 1 && selectedCards[0].id === card.id) {
-    //   setMatchedCards([...matchedCards, selectedCards[0], card]);
-    //   setSelectedCards([]);
-    // }
   };
 
   useEffect(() => {
@@ -148,14 +117,6 @@ const MemoryGame = () => {
         );
         setChoiceOne(null);
         setChoiceTwo(null);
-        // if (cards.every((card) => card.flipped)) {
-        //   console.log("ganhou");
-        //   setGameRunning(false);
-        //   setTimerStyle({});
-        //   setScreen("victory");
-        // } else {
-        //   console.log(cards);
-        // }
       } else {
         setTimeout(() => {
           setChoiceOne(null);
@@ -178,18 +139,12 @@ const MemoryGame = () => {
     }
   }, [cards, gameRunning]);
 
-  // const changeCardImage = (state) => {
-  //   return state;
-  // };
-
   const renderCards = () => {
     return cards.map((card, index) => (
       <Card
         key={index}
         backImage={backImage}
         cardData={card}
-        // frontImage={card}
-        // setImage={changeCardImage}
         handleClick={handleCardClick}
         flipped={
           choiceOne?.id === card.id ||
@@ -200,18 +155,6 @@ const MemoryGame = () => {
       />
     ));
   };
-
-  //   const renderMessage = () => {
-  //     if (matchedCards.length === cards.length) {
-  //       return <div>You won!</div>;
-  //     }
-
-  //     if (selectedCards.length === 2) {
-  //       return <div>Try again!</div>;
-  //     }
-
-  //     return null;
-  //   };
 
   return (
     <div className="gameScreen">
@@ -233,6 +176,7 @@ const MemoryGame = () => {
           </div>
         )
       ) : screen === "victory" ? (
+        //TODO adicionar tela de vitoria
         <div className="h-full flex justify-center items-center flex-col">
           <Typography variant="h1">Você ganhou</Typography>
           <button onClick={resetGame} className="mt-8">
@@ -240,6 +184,7 @@ const MemoryGame = () => {
           </button>
         </div>
       ) : (
+        //TODO adicionar tela de derrota
         <div className="h-full flex justify-center items-center flex-col">
           <Typography variant="h1">Você perdeu</Typography>
           <button onClick={resetGame} className="mt-8">
@@ -247,8 +192,6 @@ const MemoryGame = () => {
           </button>
         </div>
       )}
-      {/* <button onClick={() => console.log(cards)}>teste</button> */}
-      {/* {renderMessage()} */}
     </div>
   );
 };

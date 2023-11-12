@@ -17,52 +17,6 @@ const Tabuada = () => {
   const [feedback, setFeedback] = useState("");
   const [cards, setCards] = useState([]);
   const [feedbackTimeoutId, setFeedbackTimeoutId] = useState(null);
-  //   const [answer, setAnswer] = useState("");
-  //   const [isCorrect, setIsCorrect] = useState(null);
-
-  //   const handleAnswerChange = (event) => {
-  //     setAnswer(event.target.value);
-  //   };
-
-  //   const handleSubmit = (event) => {
-  //     event.preventDefault();
-  //     const correctAnswer = num1 * num2;
-  //     setIsCorrect(parseInt(answer) === correctAnswer);
-  //     setNum1(Math.floor(Math.random() * 10) + 1);
-  //     setNum2(Math.floor(Math.random() * 10) + 1);
-  //     setAnswer("");
-  //   };
-
-  //   const newQuestion = () => {
-  //     setNum1(Math.floor(Math.random() * 10) + 1);
-  //     setNum2(Math.floor(Math.random() * 10) + 1);
-  //     setAnswer("");
-  //     var newCards = [num1 * num2];
-  //     for (let i = 0; i < 3; i++) {
-  //       let randomNumber;
-  //       while (
-  //         randomNumber === undefined ||
-  //         randomNumber == null ||
-  //         randomNumber <= 0 ||
-  //         newCards.includes(randomNumber)
-  //       ) {
-  //         randomNumber = num1 * num2 + Math.floor(Math.random() * 30) - 15;
-  //       }
-  //       newCards.push(randomNumber);
-  //     }
-  //     setCards(shuffle(newCards));
-  //     console.log(num1 * num2);
-  //   };
-
-  //   const handleAnswer = (card) => {
-  //     var certas = acertos;
-  //     setFeedback(card === num1 * num2 ? "correct" : "wrong");
-  //     if (num1 * num2 === card) {
-  //       setAcertos(acertos + 1);
-  //     }
-  //     setNum1(Math.floor(Math.random() * 10) + 1);
-  //     setNum2(Math.floor(Math.random() * 10) + 1);
-  //     console.log("nova resposta");
 
   const clearFeedback = () => {
     if (feedbackTimeoutId) {
@@ -86,9 +40,6 @@ const Tabuada = () => {
   };
 
   useEffect(() => {
-    // setNum1(Math.floor(Math.random() * 10) + 1);
-    // setNum2(Math.floor(Math.random() * 10) + 1);
-    // setAnswer("");
     var newCards = [num1 * num2];
     for (let i = 0; i < 3; i++) {
       let randomNumber;
@@ -103,7 +54,6 @@ const Tabuada = () => {
       newCards.push(randomNumber);
     }
     setCards(shuffle(newCards));
-    // console.log(num1 * num2);
   }, [num1, num2]);
 
   return (
@@ -194,14 +144,6 @@ const Tabuada = () => {
           </Typography>
         </Box>
       )}
-      {/* <form onSubmit={handleSubmit}>
-        <input type="number" value={answer} onChange={handleAnswerChange} />
-        <button type="submit">Confirmar resposta</button>
-      </form>
-      {isCorrect === true && <p>Correto!</p>}
-      {isCorrect === false && (
-        <p>Incorreto. A resposta certa é {num1 * num2}.</p>
-      )} */}
     </div>
   );
 };

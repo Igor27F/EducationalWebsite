@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React from "react";
 
 const Card = ({
   frontImage,
@@ -8,28 +8,6 @@ const Card = ({
   handleClick,
   flipped,
 }) => {
-  // const [image, setImg] = useState(frontImage);
-  // setImage = (state) => {
-  //   switch (state) {
-  //     case "front":
-  //       setImg(frontImage);
-  //       break;
-
-  //     case "back":
-  //       setImg(backImage);
-  //       break;
-
-  //     case "matched":
-  //       setImg(frontImage);
-  //       Card.style.opacity = "0.5";
-  //       break;
-
-  //     default:
-  //       setImg(backImage);
-  //       break;
-  //   }
-  // };
-
   const Click = () => {
     handleClick(cardData);
   };
@@ -58,7 +36,6 @@ const Card = ({
           draggable={false}
         />
       )}
-      {/* <img src={image} alt={image} onClick={Click} draggable={false} /> */}
     </div>
   );
 };
