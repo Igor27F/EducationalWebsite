@@ -7,6 +7,7 @@ import {
   Skeleton,
   Typography,
 } from "@mui/material";
+// import cenario from "../cenario1.jpg";
 import axios from "axios";
 import React from "react";
 import { Link } from "react-router-dom";
@@ -90,7 +91,15 @@ function GamesListMenu(props) {
                   to={game.title.replace(/\s/g, "")}
                   className="w-full flex justify-center items-center"
                 >
-                  <Box className="border-4 border-sky-500 w-3/4 h-36 bg-green-500 text-red-600 text-center justify-center items-center flex">
+                  <Box
+                    sx={{
+                      // backgroundImage: "url('../cenario1.jpeg')",
+                      // backgroundRepeat: "no-repeat",
+                      height: "385px",
+                      width: "385px",
+                    }}
+                    className="border-4 border-sky-500 w-3/4 h-36 bg-green-500 text-red-600 text-center justify-center items-center flex"
+                  >
                     <Typography variant="h3" className="font-bold">
                       {game.title}
                     </Typography>

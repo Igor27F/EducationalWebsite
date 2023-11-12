@@ -28,6 +28,7 @@ const games = [
     categoryDescription: "De 5 a 10 anos",
   },
   { title: "cobrinha", category: "kid", categoryDescription: "De 5 a 10 anos" },
+  { title: "tabuada", category: "kid", categoryDescription: "De 5 a 10 anos" },
   {
     title: "soletrando",
     category: "kid",

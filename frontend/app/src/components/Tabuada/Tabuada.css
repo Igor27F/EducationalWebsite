@@ -1,0 +1,17 @@
+* {
+  user-select: none;
+}
+.gameScreen {
+  margin-top: 5px;
+  height: 80vh;
+  width: 90vw;
+  margin: auto;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  flex-direction: column;
+  width: 70%;
+  background-color: aqua;
+  font-weight: 700;
+}
