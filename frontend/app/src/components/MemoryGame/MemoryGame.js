@@ -25,6 +25,7 @@ const MemoryGame = () => {
   const [choiceOne, setChoiceOne] = useState(null);
   const [choiceTwo, setChoiceTwo] = useState(null);
   const [screen, setScreen] = useState("game");
+  const [timer, setTimer] = useState(null);
   // const [selectedCards, setSelectedCards] = useState([]);
   // const [matchedCards, setMatchedCards] = useState([]);
 
@@ -86,13 +87,15 @@ const MemoryGame = () => {
     setTimerStyle({
       animation: "timer-animation-reverse " + flipTimer + "s linear",
     });
-    console.log(timerStyle);
-    setTimeout(() => {
-      // setGameRunning(true);
-      // endFlip();
-      console.log("game running: " + gameRunning);
-      setFlipTime(false);
-    }, flipTimer * 1000);
+    if (timer) clearTimeout(timer);
+    setTimer(
+      setTimeout(() => {
+        // setGameRunning(true);
+        // endFlip();
+        console.log("game running: " + gameRunning);
+        setFlipTime(false);
+      }, flipTimer * 1000)
+    );
   };
 
   useEffect(() => {
@@ -169,7 +172,6 @@ const MemoryGame = () => {
       gameRunning &&
       cards.every((card) => card.flipped)
     ) {
-      console.log("ganhou");
       setGameRunning(false);
       setTimerStyle({});
       setScreen("victory");
