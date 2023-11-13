@@ -157,7 +157,7 @@ const MemoryGame = () => {
   };
 
   return (
-    <div className="gameScreen">
+    <div className="memoryGameScreen">
       {screen === "game" ? (
         cards.length !== 0 ? (
           <div id="gameStarted">

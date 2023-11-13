@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from "react";
 import "./Tabuada.css";
+import nuvem from "./nuvem.png";
 import { Box, Grid, Typography } from "@mui/material";
 
 const shuffle = (array) => {
@@ -57,12 +58,12 @@ const Tabuada = () => {
   }, [num1, num2]);
 
   return (
-    <div className="gameScreen">
+    <div className="tableGameScreen">
       <Typography
         variant="h1"
         component="div"
         gutterBottom
-        sx={{ marginTop: "16px" }}
+        sx={{ marginTop: "16px", color: "white" }}
       >
         {num1} x {num2}?
       </Typography>
@@ -86,7 +87,11 @@ const Tabuada = () => {
                 justifyContent: "center",
                 alignItems: "center",
                 cursor: "pointer",
-                backgroundColor: "mediumaquamarine",
+                // backgroundColor: "orange",
+                backgroundImage: `url(${nuvem})`,
+                backgroundSize: "contain",
+                backgroundRepeat: "no-repeat",
+                backgroundPosition: "center",
               }}
               onClick={() => handleAnswer(card)}
             >

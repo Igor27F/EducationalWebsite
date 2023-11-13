@@ -1,7 +1,7 @@
 * {
   user-select: none;
 }
-.gameScreen {
+.tableGameScreen {
   margin-top: 5px;
   height: 80vh;
   width: 90vw;
@@ -12,6 +12,6 @@
   text-align: center;
   flex-direction: column;
   width: 70%;
-  background-color: aqua;
+  background-color: #00003f;
   font-weight: 700;
 }
