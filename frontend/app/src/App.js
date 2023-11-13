@@ -5,6 +5,7 @@ import React from "react";
 import QuizzGame from "./components/QuizzGame/QuizzGame";
 import MemoryGame from "./components/MemoryGame/MemoryGame";
 import Tabuada from "./components/Tabuada/Tabuada";
+import JogoDaVelha from "./components/JogoDaVelha/JogoDaVelha";
 
 //TODO adicionar opcao de temas
 
@@ -17,6 +18,7 @@ function App() {
         <Route path="/jogodamemória" element={<MemoryGame />}></Route>
         <Route path="/tabuada" element={<Tabuada />}></Route>
         <Route path="/perguntaserespostas" element={<QuizzGame />}></Route>
+        <Route path="/jogodavelha" element={<JogoDaVelha />}></Route>
       </Routes>
     </div>
   );
