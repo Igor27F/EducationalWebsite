@@ -1,8 +1,10 @@
 import React, { useEffect, useState } from "react";
 import Card from "./Card";
 import backImage from "./images/rakanpensativo.png";
+import initialScreenImage from "./images/possivel_tela_1.png";
+import retryScreenImage from "./images/possivel_tela_1.png";
 import "../MemoryGame/MemoryGame.css";
-import { Typography } from "@mui/material";
+import { Box, Typography } from "@mui/material";
 
 const pokemonAPI =
   "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/";
@@ -169,28 +171,61 @@ const MemoryGame = () => {
             <div className="card-grid">{renderCards()}</div>
           </div>
         ) : (
-          <div className="h-full flex justify-center items-center">
+          <Box
+            sx={{
+              backgroundImage: `url(${initialScreenImage})`,
+              backgroundSize: "contain",
+              backgroundRepeat: "no-repeat",
+              backgroundPosition: "center",
+              color: "white",
+            }}
+            className="h-full flex justify-center items-center"
+          >
             <button onClick={resetGame}>
               <Typography variant="h1">Começar</Typography>
             </button>
-          </div>
+          </Box>
         )
       ) : screen === "victory" ? (
         //TODO adicionar tela de vitoria
-        <div className="h-full flex justify-center items-center flex-col">
-          <Typography variant="h1">Você ganhou</Typography>
+        <Box
+          sx={{
+            backgroundImage: `url(${retryScreenImage})`,
+            backgroundSize: "contain",
+            backgroundRepeat: "no-repeat",
+            backgroundPosition: "center",
+          }}
+          className="h-full flex justify-center items-center flex-col"
+        >
+          <Typography variant="h1" sx={{ color: "green" }}>
+            Você ganhou
+          </Typography>
           <button onClick={resetGame} className="mt-8">
-            <Typography variant="h3">Jogar novamente</Typography>
+            <Typography variant="h3" sx={{ color: "red" }}>
+              Jogar novamente
+            </Typography>
           </button>
-        </div>
+        </Box>
       ) : (
         //TODO adicionar tela de derrota
-        <div className="h-full flex justify-center items-center flex-col">
-          <Typography variant="h1">Você perdeu</Typography>
+        <Box
+          sx={{
+            backgroundImage: `url(${retryScreenImage})`,
+            backgroundSize: "contain",
+            backgroundRepeat: "no-repeat",
+            backgroundPosition: "center",
+          }}
+          className="h-full flex justify-center items-center flex-col"
+        >
+          <Typography variant="h1" sx={{ color: "red" }}>
+            Você perdeu
+          </Typography>
           <button onClick={resetGame} className="mt-8">
-            <Typography variant="h3">Tentar novamente</Typography>
+            <Typography variant="h3" sx={{ color: "red" }}>
+              Tentar novamente
+            </Typography>
           </button>
-        </div>
+        </Box>
       )}
     </div>
   );
