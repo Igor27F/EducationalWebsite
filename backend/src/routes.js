@@ -14,7 +14,14 @@ const users = [
     name: "Crianca",
     type: "kid",
     userName: "crianca",
-    password: "123",
+    password: "1234",
+  },
+  {
+    id: 3,
+    name: "Igor",
+    type: "kid",
+    userName: "igor",
+    password: "1234",
   },
 ];
 
@@ -195,7 +202,7 @@ routes.post("/login", (req, res) => {
   );
 
   if (user) {
-    return res.status(200).json({ name: user.userName, type: user.type });
+    return res.status(200).json({ name: user.name, type: user.type });
   }
 
   return res.status(401).json({ message: "Credenciais invalidas" });

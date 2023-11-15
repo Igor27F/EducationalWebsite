@@ -12,7 +12,10 @@ import {
   Autocomplete,
   Box,
   Button,
+  FormControl,
+  FormHelperText,
   Grid,
+  Input,
   TextField,
   alpha,
   styled,
@@ -56,6 +59,11 @@ function Header(props) {
   const [auth, setAuth] = React.useState(false);
   const [anchorEl, setAnchorEl] = React.useState(null);
   const [games, setGames] = React.useState([]);
+  const [loginModal, setLoginModal] = React.useState(false);
+  const [user, setUser] = React.useState("");
+  const [password, setPassword] = React.useState("");
+  const [loginError, setLoginError] = React.useState(false);
+  const [userName, setUserName] = React.useState("");
   const navigate = useNavigate();
 
   const handleChangeGame = (game) => {
@@ -75,7 +83,30 @@ function Header(props) {
   };
   const handleLogin = (e) => {
     e.preventDefault();
-    setAuth(true);
+    // setAuth(true);
+    setLoginModal(true);
+    setLoginError(false);
+  };
+
+  const handleLoginSubmit = async (e) => {
+    e.preventDefault();
+    try {
+      const response = await axios.post("http://localhost:3000/login", {
+        userName: user,
+        password: password,
+      });
+      if (response.status === 200) {
+        setAuth(true);
+        setLoginModal(false);
+        setLoginError(false);
+        setUserName(response.data.name);
+      }
+    } catch (e) {
+      if (e?.response) {
+        console.log("Erro ao acessar o servidor");
+        setLoginError(true);
+      }
+    }
   };
 
   const handleMenu = (event) => {
@@ -172,7 +203,7 @@ function Header(props) {
                   noWrap
                   textOverflow={"ellipsis"}
                 >
-                  joaozinho
+                  {userName}
                 </Typography>
                 <IconButton
                   size="large"
@@ -205,6 +236,59 @@ function Header(props) {
               </Box>
             )}
           </Grid>
+          {loginModal && (
+            <Box
+              sx={{
+                position: "absolute",
+                width: "20vw",
+                height: "45vh",
+                display: "flex",
+                justifyContent: "center",
+                alignItems: "center",
+                flexDirection: "column",
+                backgroundColor: "orange",
+                left: "0",
+                top: "300%",
+                right: "0",
+                margin: "auto",
+                color: "black",
+                border: "3px solid black",
+              }}
+            >
+              <FormControl defaultValue="" required>
+                <Typography variant="h5">Usuário:</Typography>
+                <Input
+                  placeholder="Digite seu nome aqui"
+                  value={user}
+                  onChange={(e) => setUser(e.target.value)}
+                />
+              </FormControl>
+              <Box sx={{ mb: 2 }} />
+              <FormControl defaultValue="" required>
+                <Typography variant="h5">Senha:</Typography>
+                <Input
+                  type="password"
+                  value={password}
+                  placeholder="Digite sua senha aqui"
+                  onChange={(e) => setPassword(e.target.value)}
+                />
+                {loginError && (
+                  <FormHelperText error>login inválido</FormHelperText>
+                )}
+                <Box sx={{ mb: 2 }} />
+                <Button
+                  type="submit"
+                  sx={{ backgroundColor: "blue", color: "white" }}
+                  onClick={handleLoginSubmit}
+                >
+                  Entrar
+                </Button>
+                <Button type="button" onClick={() => setLoginModal(false)}>
+                  Cancelar
+                </Button>
+              </FormControl>
+            </Box>
+          )}
         </Grid>
       </Toolbar>
     </AppBar>
