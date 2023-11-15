@@ -12,6 +12,7 @@ const shuffle = (array) => {
 };
 
 const Tabuada = () => {
+  const [difficulty, setDifficulty] = useState(1);
   const [num1, setNum1] = useState(Math.floor(Math.random() * 10) + 1);
   const [num2, setNum2] = useState(Math.floor(Math.random() * 10) + 1);
   const [acertos, setAcertos] = useState(0);
@@ -31,12 +32,19 @@ const Tabuada = () => {
   };
 
   const handleAnswer = (card) => {
-    setFeedback(card === num1 * num2 ? "correct" : "wrong");
-    if (num1 * num2 === card) {
+    var acertou = card === num1 * num2;
+    setFeedback(acertou ? "correct" : "wrong");
+    if (acertou) {
       setAcertos(acertos + 1);
+      setDifficulty(difficulty + 0.1);
+    } else {
+      setDifficulty(difficulty - 0.3);
+      if (difficulty < 1) {
+        setDifficulty(1);
+      }
     }
-    setNum1(Math.floor(Math.random() * 10) + 1);
-    setNum2(Math.floor(Math.random() * 10) + 1);
+    setNum1(Math.floor(Math.random() * 10 * difficulty) + 1);
+    setNum2(Math.floor(Math.random() * 10 * difficulty) + 1);
     clearFeedback();
   };
 
