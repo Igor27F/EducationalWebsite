@@ -99,6 +99,8 @@ function Header(props) {
         setAuth(true);
         setLoginModal(false);
         setLoginError(false);
+        setUser("");
+        setPassword("");
         setUserName(response.data.name);
       }
     } catch (e) {
@@ -120,6 +122,13 @@ function Header(props) {
   const handleLogout = () => {
     handleClose();
     setAuth(false);
+  };
+
+  const handleCancelarLogin = () => {
+    setLoginModal(false);
+    setLoginError(false);
+    setUser("");
+    setPassword("");
   };
 
   return (
@@ -283,7 +292,7 @@ function Header(props) {
                 >
                   Entrar
                 </Button>
-                <Button type="button" onClick={() => setLoginModal(false)}>
+                <Button type="button" onClick={handleCancelarLogin}>
                   Cancelar
                 </Button>
               </FormControl>
